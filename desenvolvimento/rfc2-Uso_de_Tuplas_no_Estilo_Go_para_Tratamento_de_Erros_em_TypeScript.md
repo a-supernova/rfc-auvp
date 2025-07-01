@@ -10,7 +10,7 @@
 ### Status: `Proposto`
 
 ### Criado em: `01/07/2025`
-    
+
 ---
 
 ## Sumário
@@ -26,6 +26,48 @@ O TypeScript permite o uso de exceções (`throw`) e blocos `try/catch`, mas ess
 - Oculta o fluxo de controle e pode dificultar a leitura.
 - Pode capturar erros inesperados, comprometendo a previsibilidade.
 - Reduz a clareza do contrato de funções (o tipo de retorno não explicita que pode haver falha).
+
+Exemplo do problema:
+
+```ts
+
+    function multiplicar(a: number, b: number): number {
+        try {
+            if (typeof a !== 'number' || typeof b !== 'number') {
+                throw new Error('Parâmetros inválidos');
+            }
+            return a * b;
+        } catch (error) {
+            return 0; // Retorna 0 em caso de erro, mas não informa o erro ao chamador.
+            // ou
+            throw error; // Lança o erro, mas o chamador precisa envolver a chamada em
+        }
+    }
+
+    function tabuada(numero: number): number[] { // Por mais que em typescript seja possível definir o tipo de entrada e saída, não é garantido que o dado enviado seja válido.
+        const resultado: number[] = [];
+        for (let i = 1; i <= 10; i++) {
+            try {
+                const produto = multiplicar(numero, i);
+                resultado.push(produto);
+            } catch (error) {
+                console.error('Erro ao calcular a tabuada:', error);
+                return []; // Retorna um array vazio em caso de erro, mas não informa o erro ao chamador.
+                // ou
+                throw new Error('Erro ao calcular a tabuada'); // Lança um erro, mas o chamador precisa lidar com isso.
+            }
+        }
+        return resultado;
+    }
+
+  
+    console.log(tabuada(2)); // Saída: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+    console.log(tabuada('a')); // Saída: [] ou erro, nesse caso será necessário envolver a chamada em um try/catch para lidar com o erro.
+
+
+
+```
+
 
 A linguagem Go resolve isso retornando tuplas `(result, err)` e delegando ao chamador a responsabilidade de verificar o erro. Esta RFC propõe trazer esse conceito para o TypeScript.
 
@@ -46,25 +88,32 @@ func parseJSON(json string) (map[string]interface{}, error) {
 
 ## Exemplo Proposto
 
-### Padrão proposto:
+### Refatoração do exemplo anterior
 
 ```ts
 type Result<T> = [T, null] | [null, Error];
 
-function parseJSON(json: string): Result<any> {
-  try {
-    return [JSON.parse(json), null];
-  } catch (err) {
-    return [null, err instanceof Error ? err : new Error(String(err))];
-  }
+function multiplicar(a: number, b: number): Result<number> {
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        return [null, new Error('Parâmetros inválidos')];
+    }
+    return [a * b, null];
+}
+function tabuada(numero: number): Result<number[]> {
+    const resultado: number[] = [];
+    for (let i = 1; i <= 10; i++) {
+        const [produto, erro] = multiplicar(numero, i);
+        if (erro) {
+            return [null, erro]; // Retorna o erro de forma explícita
+        }
+        resultado.push(produto);
+    }
+    return [resultado, null]; // Retorna o resultado sem erro
 }
 
-const [data, err] = parseJSON('{ "valid": true }');
-if (err) {
-  console.error('Erro ao fazer parse:', err.message);
-} else {
-  console.log('Dados:', data);
-}
+console.log(tabuada(2)); // Saída: [ [ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 ], null ]
+console.log(tabuada('a')); // Saída: [ null, Error: Parâmetros inválidos ]
+
 ```
 
 ## Benefícios
