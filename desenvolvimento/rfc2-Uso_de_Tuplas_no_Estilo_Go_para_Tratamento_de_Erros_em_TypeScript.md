@@ -74,13 +74,39 @@ A linguagem Go resolve isso retornando tuplas `(result, err)` e delegando ao cha
 Exemplo em go:
 
 ```go
-func parseJSON(json string) (map[string]interface{}, error) {
-    var data map[string]interface{}
-    err := json.Unmarshal([]byte(json), &data)
-    if err != nil {
-        return nil, err
+package main
+import ( "fmt"
+)
+func multiplicar(a int, b int) (int, error) {
+    if a < 0 || b < 0 { 
+        return 0, fmt.Errorf("parâmetros inválidos")
     }
-    return data, nil
+    return a * b, nil   
+}
+func tabuada(numero int) ([]int, error) {
+    resultado := []int{}
+    for i := 1; i <= 10; i++ {
+        produto, err := multiplicar(numero, i)
+        if err != nil {
+            return nil, err // Retorna o erro de forma explícita
+        }
+        resultado = append(resultado, produto)
+    }
+    return resultado, nil // Retorna o resultado sem erro       
+}
+func main() {
+    tabuada2, err := tabuada(2)
+    if err != nil {
+        fmt.Println("Erro:", err)
+    } else {
+        fmt.Println("Tabuada de 2:", tabuada2) // Saída: Tabuada de 2: [2 4 6 8 10 12 14 16 18 20]
+    }
+    tabuadaA, err := tabuada(-1)
+    if err != nil {     
+        fmt.Println("Erro:", err) // Saída: Erro: parâmetros inválidos
+    } else {
+        fmt.Println("Tabuada de -1:", tabuadaA)
+    }
 }
 ```
 
