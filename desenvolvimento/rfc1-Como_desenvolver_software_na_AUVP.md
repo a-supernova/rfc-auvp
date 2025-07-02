@@ -61,31 +61,31 @@ A escolha das nossas tecnologias tem como base o histórico de código já exist
 
 A nossa stack principal é:
 
-### Backend: `TypeScript com NestJS e PrismaORM`
-### Frontend: `TypeScript com NextJS e ShadCN`
-### Banco de dados SQL: `PostgreSQL`
-### Banco de dados NoSQL: `MongoDB`
-### Menssagens/Caching: `Redis`
-### Automação de tarefas: `N8N`
-### Agendador de tarefas: `GNU/Linux crontab`
-### Sistema Operacional Dev: `Windows`
-### Sistema Operacional Homolog/Prod: `GNU/Linux`
-### Container: `Docker`
-### Nuvem: `AWS`
-### Infraestrutura como código: `Terraform`
-### Versionamento de códigos: `GIT`
-### Stress Testing: `Grafana K6`
-### Gestão de projetos/repos: `ClickUP, GitHUB`
+##### Backend: `TypeScript com NestJS e PrismaORM`
+##### Frontend: `TypeScript com NextJS e ShadCN`
+##### Banco de dados SQL: `PostgreSQL`
+##### Banco de dados NoSQL: `MongoDB`
+##### Menssagens/Caching: `Redis`
+##### Automação de tarefas: `N8N`
+##### Agendador de tarefas: `GNU/Linux crontab`
+##### Sistema Operacional Dev: `Windows`
+##### Sistema Operacional Homolog/Prod: `GNU/Linux`
+##### Container: `Docker`
+##### Nuvem: `AWS`
+##### Infraestrutura como código: `Terraform`
+##### Versionamento de códigos: `GIT`
+##### Stress Testing: `Grafana K6`
+##### Gestão de projetos/repos: `ClickUP, GitHUB`
 
 Outras tecnologias que estão homologadas e livres para serem utilizadas dentro da empresa:
 
-### Backend: `PHP, Python e GO`
-### Outros ORM em TypeScript: `Drizzle, KnexJS`
-### Outros backend TypeScript: `Encore.go`
-### Frontend: `Astro com React, Svelte ou VueJS`
-### Menssagens: `RabbitMQ e Kafka`
-### Orquestração de containers: `Kubernetes`
-### Servidor HTTP e Proxy Reverso: `NGINX`
+##### Backend: `PHP, Python e GO`
+##### Outros ORM em TypeScript: `Drizzle, KnexJS`
+##### Outros backend TypeScript: `Encore.go`
+##### Frontend: `Astro com React, Svelte ou VueJS`
+##### Menssagens: `RabbitMQ e Kafka`
+##### Orquestração de containers: `Kubernetes`
+##### Servidor HTTP e Proxy Reverso: `NGINX`
 
 A escolha das tecnologias é algo particular de cada projeto e cabe ao arquiteto do projeto definir as mesmas.
 
