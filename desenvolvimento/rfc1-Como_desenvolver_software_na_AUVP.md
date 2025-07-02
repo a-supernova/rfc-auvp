@@ -2,11 +2,13 @@
 ### Request for comments: 1
 ### Categoria: Desenvolvimento de Software
 
-### Autores:
-#### Marcelo Machado Fleury
-#### Alyf Mendonça
+### Autores: `Marcelo Machado Fleury, Alyf Mendonça`
 
 # RFC1 - Como desenvolver software na AUVP
+
+### Status: `Em Desenvolvimento`
+
+### Criado em: `01/07/2025`
 
 # Resumo
 
@@ -52,3 +54,54 @@ Todo projeto de software deve ter como documentação mínima os seguintes docum
 2. README.md - Documento que ensina a subir o software em ambientes de desenvolvimento (localmente), homologação e produção.
 
 Sabemos que sempre irá existir trade-offs em nossas escolhas e, por essa razão, prezamos pela transparência e aceite dos mesmos.
+
+# 2 - As Tecnologias
+
+A escolha das nossas tecnologias tem como base o histórico de código já existente e também algumas tendências e necessidades de mercado.
+
+A nossa stack principal é:
+
+### Backend: `TypeScript com NestJS e PrismaORM`
+### Frontend: `TypeScript com NextJS e ShadCN`
+### Banco de dados SQL: `PostgreSQL`
+### Banco de dados NoSQL: `MongoDB`
+### Menssagens/Caching: `Redis`
+### Automação de tarefas: `N8N`
+### Agendador de tarefas: `GNU/Linux crontab`
+### Sistema Operacional Dev: `Windows`
+### Sistema Operacional Homolog/Prod: `GNU/Linux`
+### Container: `Docker`
+### Nuvem: `AWS`
+### Infraestrutura como código: `Terraform`
+### Versionamento de códigos: `GIT`
+### Stress Testing: `Grafana K6`
+### Gestão de projetos/repos: `ClickUP, GitHUB`
+
+Outras tecnologias que estão homologadas e livres para serem utilizadas dentro da empresa:
+
+### Backend: `PHP, Python e GO`
+### Outros ORM em TypeScript: `Drizzle, KnexJS`
+### Outros backend TypeScript: `Encore.go`
+### Frontend: `Astro com React, Svelte ou VueJS`
+### Menssagens: `RabbitMQ e Kafka`
+### Orquestração de containers: `Kubernetes`
+### Servidor HTTP e Proxy Reverso: `NGINX`
+
+A escolha das tecnologias é algo particular de cada projeto e cabe ao arquiteto do projeto definir as mesmas.
+
+# 3 - O processo de desenvolvimento de software
+
+# 3.1 - A proposta de desenvolvimento
+
+# 3.2 - A implementação de uma nova funcionalidade
+
+# 3.3 - A correção de bugs
+
+
+# 4 - O versionamento de código
+
+# 4.1 - O Fluxo
+
+# 4.2 - Monorepo
+
+# 4.3 - Multirepo
